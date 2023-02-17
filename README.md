@@ -1,4 +1,4 @@
-# prom-ensembl: Hard Pattern Mining and Ensemble Learning for Detecting DNA Promoter Sequences
+# promENSEMBL: Hard Pattern Mining and Ensemble Learning for Detecting DNA Promoter Sequences
 #### Bindi M. Nagda, Van Minh Nguyen, [Ryan T. White](https://www.ryantwhite.com/nets)
 
 ![alt text](https://github.com/bindi-nagda/prom-ensembl/blob/main/Promotor.jpg)
