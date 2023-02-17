@@ -22,7 +22,7 @@ Our method shows superiority to 4 other state-of-the-art models since it minimiz
 The model presented is unrivaled in multiple measures of performance including Matthews Correlation Coefficient (MCC), 
 precision, sensitivity and specificity. Our model yields the best MCC values across all organisms, achieving a greater 
 than 99% score for all organisms except humans with TATA where it achieves a 98.7% score. It goes on to achieve
->99% in 14 out of the 16 performance metrics evaluated.
+$\geq$99% in 14 out of the 16 performance metrics evaluated.
 
 ## Contact 
 [Go to contact information](https://www.linkedin.com/in/bindinagda/)
