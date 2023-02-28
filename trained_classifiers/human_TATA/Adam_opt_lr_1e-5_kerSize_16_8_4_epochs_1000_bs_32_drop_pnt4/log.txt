@@ -1,0 +1,3 @@
+Test precision: 0.988
+Test recall: 0.8401360544217688
+Test MCC : 0.8393855177076133
