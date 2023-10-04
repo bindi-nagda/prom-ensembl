@@ -9,7 +9,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from dataloader import load_data
 from modules.deepromoter import DeePromoter
-from my_test import evaluate, mcc
+from test import evaluate, mcc
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
