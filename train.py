@@ -8,13 +8,13 @@ from icecream import ic
 from pathlib import Path
 import matplotlib.pyplot as plt
 from dataloader import load_data
-from modules.model import EnsembleUnit
-from test import evaluate, mcc
+from modules.deepromoter import DeePromoter
+from my_test import evaluate, mcc
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, epoch_num=300):
+def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, epoch_num=100):
     """
     Training
     :param data_path: Path to the txt data file
@@ -28,21 +28,20 @@ def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, ep
     if ker is None:
         ker = [27, 14, 7]
 
-    ic(ker)
-
     # create the experiment folder to save the result
-    output = Path("./output/mouse_nonTATA")
+    output = Path("./output/fly_TATA/my_classifier")
     output.mkdir(exist_ok=True)
     exp_folder = output.joinpath(exp_name)
     exp_folder.mkdir(exist_ok=True)
 
     # load data
     ic("Data loading")
+    print()
     data = load_data(data_path, device=device, batch_size=32)
     train_pos, val_pos, test_pos, train_neg, val_neg, test_neg = data
 
     # model define
-    net = EnsembleUnit(ker, drop = 0.4)
+    net = DeePromoter(ker, drop = 0.5)
     net.to(device)
 
     # load pre-train model
@@ -51,9 +50,14 @@ def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, ep
 
     # define loss, optimizer
     criterion = nn.CrossEntropyLoss()
-    #optimizer = optim.SGD(net.parameters(), lr=0.01, momentum=0.9)
-    optimizer = optim.Adam(net.parameters(), lr=0.001)
-    # optimizer = optim.Adadelta(net.parameters(), lr=0.001)
+    learning_rate = 0.001
+    ic(ker)
+    ic(learning_rate)
+    #optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9)
+    optimizer = optim.Adam(net.parameters(), lr=learning_rate)
+    #optimizer = optim.Adadelta(net.parameters(), lr=0.001)
+    print(f"Optimizer: {optimizer.__class__.__name__}")
+    training_epochs = epoch_num
     running_loss = 0
     best_mcc = 0
     best_precision = 0
@@ -61,10 +65,13 @@ def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, ep
     break_after = 10
     last_update_best = 0
     pbar = range(epoch_num+1)
-    ic(pbar)
+    #ic(pbar)
+    print()
     ic("Start training")
-    ic("Experiment :", exp_name)
-
+    ic(training_epochs)
+    print()
+    ic(exp_name)
+    ic(output)
     PPrecision = []
     RRecall = []
     MMCC = []
@@ -94,7 +101,8 @@ def train(data_path, pretrain=None, exp_name="test", training=True, ker=None, ep
                 RRecall = np.append(RRecall, recall)
                 MMCC = np.append(MMCC, MCC)
                 net.train()
-                ic("\nEpoch :", epoch)
+                print()
+                ic("Epoch :", epoch)
                 ic("Val precision :", precision)
                 ic("Val recall :", recall)
                 ic("Val MCC :", MCC)

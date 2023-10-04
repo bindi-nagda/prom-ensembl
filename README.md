@@ -18,11 +18,7 @@ pairs that code for the promoter region within the DNA sequences.
 [EPDNew Database](https://epd.epfl.ch/EPDnew_database.php)
 
 ## Results
-Our method shows superiority to 4 other state-of-the-art models since it minimizes the rate of both false positives and false negatives. 
-The model presented is unrivaled in multiple measures of performance including Matthews Correlation Coefficient (MCC), 
-precision, sensitivity and specificity. Our model yields the best MCC values across all organisms, achieving a greater 
-than 99% score for all organisms except humans with TATA where it achieves a 98.7% score. It goes on to achieve
-$\geq$ 99% in 14 out of the 16 performance metrics evaluated.
+Our method shows superiority to 4 other state-of-the-art models since it minimizes the rate of both false positives and false negatives. The model presented is unrivaled in multiple measures of performance including Matthews Correlation Coefficient (MCC), precision, sensitivity and specificity. Our model yields the best MCC values across all organisms, achieving a greater than 99% score for all organisms except fruit fly with and without TATA where it achieves a 98.1% score. It goes on to achieve $\geq$ 98% across all 4 performance metrics evaluated for all 8 organisms.
 
 ## Contact 
 [Go to contact information](https://www.linkedin.com/in/bindinagda/)
